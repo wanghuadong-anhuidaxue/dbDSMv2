@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>dbDSM</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name=”viewport” content=”width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no”/>
+    <link rel="shortcut icon" href="/dbDSMv2/images/dbdsmico.png" type="image/x-icon">
+    <link rel="stylesheet" href="/dbDSMv2/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/dbDSMv2/css/home.css"/>
+    <script src="/dbDSMv2/js/jquery-3.4.1.js"></script>
+    <style>
+        th {
+             text-align: center
+        }
+        .asvg:hover {
+            color: #5fb878;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="layui-container" style="min-width:1140px;">
+    <div class="layui-row" id="header">
+        <!--头-->
+        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12" id="banner">
+        </div>
+        <!--这里是banner-->
+        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12" id="bar">
+            <!--这里是导航栏-->
+            <ul class="layui-nav" id="navbar">
+                <li class="layui-nav-item">
+                    <a href="/dbDSMv2/">Home</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/dbDSMv2/search">Search</a>
+                </li>
+                <li class="layui-nav-item ">
+                    <a href="/dbDSMv2/analysis">Analysis</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/dbDSMv2/download">Download</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/dbDSMv2/about">About</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/dbDSMv2/submit">Submit</a>
+                </li>
+                <li class="layui-nav-item layui-this">
+                    <a href="/dbDSMv2/literature">Literature</a>
+                </li>
+                <li class="layui-nav-item ">
+                    <a href="/dbDSMv2/contact">Contact us</a>
+                </li>
+            </ul>
+        </div>
+        <!--导航栏到这-->
+    </div>
+    <!--头到这-->
+    <div class="layui-row " id="bodyer" style="padding:40px;">
+        <!--主体部分-->
+        <fieldset class="layui-elem-field">
+            <legend style="align:left;"><i><strong>Literature classification</strong></i></legend>
+            <div>
+
+                <div style="width: 50%; float: left; margin-top: 8%">
+                    <p style="font-size: 15px; padding-left: 10px; text-align: justify;">Summary articles of deleterious synonymous mutations regarding <br/>to tools, analysis, review and mechanism classification.</p>
+                </div>
+                <div id="container" style="margin-left:50%; width:50%; height: 230px;"></div>
+                <div style="height: 45px; margin-top: 50px;">
+                    <form action="/dbDSMv2/literature" name="selectLimit">
+                        <div class="layui-form layui-col-xs6 layui-col-sm6 layui-col-md6 layui-col-lg6" >
+                            <div class="layui-form-item ">
+                                <div class="layui-input-inline" style="width: 250px">
+                                    <select name="literatureName" id="selectL" lay-filter="aihao">
+                                        <option value="ALL"{% if literatureName=="ALL" %}selected{% endif %}>ALL</option>
+                                        <option value="mRNA_structure"{% if literatureName=="mRNA_structure" %}selected{% endif %}>mRNA structure</option>
+                                        <option value="microRNA_binding"{% if literatureName=="microRNA_binding" %}selected{% endif %}>microRNA binding</option>
+                                        <option value="Protein_synthesis"{% if literatureName=="Protein_synthesis" %}selected{% endif %}>Protein synthesis</option>
+                                        <option value="Splicing_regulation"{% if literatureName=="Splicing_regulation" %}selected{% endif %}>Splicing regulation</option>
+                                        <option value="Transcription_factor_regulation"{% if literatureName=="Transcription_factor_regulation" %}selected{% endif %}>Transcription factor regulation</option>
+                                        <option value="Specific_tool"{% if literatureName=="Specific_tool" %}selected{% endif %}>Specific tool</option>
+                                        <option value="General_tool"{% if literatureName=="General_tool" %}selected{% endif %}>General tool</option>
+                                        <option value="Analysis_article"{% if literatureName=="Analysis_article" %}selected{% endif %}>Analysis article</option>
+                                        <option value="Review_article"{% if literatureName=="Review_article" %}selected{% endif %}>Review article</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="" style="position: absolute; left: 86%">
+                        <button class="layui-btn" style="background-color: #5fb878;"><a
+                                href="/dbDSMv2/download/literature.xlsx"
+                                style="color:#ffffff;cursor:pointer;float:right;">Download</a>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <table class="layui-table" lay-filter="tables" style="background-color:#F2F2F2; color: #000000">
+                        <colgroup>
+                            <col width="50">
+                            <col width="500">
+                            <col width="50">
+                            <col width="50">
+                            <col width="50">
+                        </colgroup>
+                        <thead>
+                        <tr style="background-color:#b5b4b2;">
+                            <th style="text-align: center"><strong>PMID</strong></th>
+                            <th style="text-align: center"><strong>Title</strong></th>
+                            <th style="text-align: center"><strong>Author</strong></th>
+                            <th style="text-align: center"><strong>Source</strong></th>
+                            <th style="text-align: center"><strong>LiteratureClassification</strong></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for literature in literatureList:%}
+                        <tr>
+                            <td>
+                                {% if literature[0]|string != 'nan' %}
+                                <a style="color:#5FB878; " href="https://pubmed.ncbi.nlm.nih.gov/{{ literature[0] }}" target="view_window">
+                                        {{ literature[0] }}
+                                </a>
+                                {% else %}
+                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n/a
+                                {% endif %}
+                            </td>
+                            <td>{{ literature[1] }}</td>
+                            <td>{{ literature[2] }}</td>
+                            <td>{{ literature[3] }}</td>
+                            <td>{{ literature[4] }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+
+    <div class="layui-row" id="footer" align='center' style="margin-top: 30%">
+        <hr class="layui-bg-black">
+        <div class="link">
+            Links:
+            <a class="ow" href="http://bioinfo.ahu.edu.cn:8080/PrDSM/" target="_blank">PrDSM</a>
+            <div style="display:inline;">|</div>
+            <a class="ow" href="http://bioinfo.ahu.edu.cn:8080/IDSV/" target="_blank">IDSV</a>
+            <!-- <div style="display:inline;">|</div>
+            <a class="ow" href="http://bioinfo.ahu.edu.cn:8080/Melanoma/index.jsp" target="_blank">Melanoma</a> -->
+        </div>
+        <div class="copyright">
+            Copyright©
+            <a class="ow" href="http://en.ahu.edu.cn/" target="_blank">AnHui University</a> ©All Rights Reserved.
+        </div>
+        <div class="use">
+            <!-- Website content is for educational and research purposes only and is not intended to be used for medical advice, diagnosis or treatment. -->
+        </div>
+    </div>
+</div>
+
+<div>
+    <div style="position:fixed;bottom:30px;margin-left: 95%;">
+        <a class="asvg" id="back-to-top">
+            <svg class="bi bi-arrow-up-square-fill" width="3em" height="3em" viewBox="0 0 16 16"
+                 fill="currentColor"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
+            </svg>
+        </a>
+    </div>
+</div>
+</body>
+
+<script src="/dbDSMv2/layui/layui.js"></script>
+<script type="text/javascript" src="/dbDSMv2/js/back-to-top.js"></script>
+<script>
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+</script>
+
+<script type="text/javascript">
+    layui.use('form', function(){
+      var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+
+      form.on('select(aihao)', function(data){
+        document.selectLimit.submit();
+      });
+      form.render();
+    });
+
+    var table = layui.table;
+    //转换静态表格
+    layui.table.init('tables');
+</script>
+
+
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+
+<script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+var data = [{
+    name: 'mRNA structure',
+    value: 32/740
+}, {
+    name: 'microRNA binding',
+    value: 1/740
+}, {
+    name: 'Protein synthesis',
+    value: 42/740
+}, {
+    name: 'Splicing regulation',
+    value: 603/740
+}, {
+    name: 'Transcription factor regulation',
+    value: 1/740
+}, {
+    name: 'Specific tool',
+    value: 6/740
+}, {
+    name: 'General tool',
+    value: 10/740
+}, {
+    name: 'Analysis article',
+    value: 22/740
+}, {
+    name: 'Review article',
+    value: 23/740
+}];
+
+option = {
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: ({d}%)'
+    },
+    title: [{
+        left: '16.67%',
+        top: '75%',
+        textAlign: 'center'
+    }],
+    series: [{
+        type: 'pie',
+        radius: '70%',
+        center: ['50%', '50%'],
+        data: data,
+        animation: false,
+        label: {
+            position: 'outer',
+            alignTo: 'labelLine',
+            bleedMargin: 5
+        },
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+    }]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+</script>
+
+
+
+
+</html>

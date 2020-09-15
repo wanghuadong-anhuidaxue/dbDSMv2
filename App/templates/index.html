@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>dbDSM</title>
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+		<link rel="shortcut icon" href="/dbDSMv2/images/dbdsmico.png" type="image/x-icon">
+		<link href="/dbDSMv2/layui/css/layui.css" rel="stylesheet" />
+		<link href="/dbDSMv2/css/home.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/dbDSMv2/css/Bubble.css">
+		<style>
+		.layui-colla-content a:hover {
+			color: #5fb878;
+		}
+        .layui-colla-title strong {
+            font-size: 16px;
+        }
+		.aimg img:hover {
+            margin-top: 5px;
+            margin-left: 5px;
+            height: 50px;
+            box-shadow: 5px 5px 5px #888888;
+        }
+
+		</style>
+	</head>
+
+	<body>
+		<div class="layui-container" style="min-width:1140px;">
+			<div class="layui-row" id="header">
+				<!--头-->
+				<div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12" id="banner">
+				</div>
+				<!--这里是banner-->
+				<div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12" id="bar">
+					<!--这里是导航栏-->
+					<ul class="layui-nav" id="navbar">
+						<li class="layui-nav-item layui-this">
+							<a class="heada" href="/dbDSMv2/">Home</a>
+						</li>
+						<li class="layui-nav-item ">
+							<a class="heada" href="/dbDSMv2/search">Search</a>
+						</li>
+						<li class="layui-nav-item ">
+							<a href="/dbDSMv2/analysis">Analysis</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="heada" href="/dbDSMv2/download">Download</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="heada" href="/dbDSMv2/about">About</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="heada" href="/dbDSMv2/submit">Submit</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="heada" href="/dbDSMv2/literature">Literature</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="heada" href="/dbDSMv2/contact">Contact us</a>
+						</li>
+					</ul>
+				</div>
+				<!--导航栏到这-->
+			</div>
+			<!--头到这-->
+
+			<div class="layui-row" id="bodyer">
+				<div class="layui-row" id="bodyer1">
+					<!--主体部分-->
+					<div class="layui-row layui-col-space10">
+					    <div class="layui-col-md7">
+						    <div class="layui-collapse">
+								<div class="layui-colla-item">
+								    <h2 class="layui-colla-title"><strong>Overview</strong></h2>
+
+								    <div class="layui-colla-content layui-show" style="color:black;text-align: justify;">
+								    	<div class="page-header"><strong>Synonymous Mutation</strong></div>
+																		    <hr class="" style="background-color: rgba(0,0,0,0.2)">
+								        Synonymous mutation is a form of single nucleotide mutation which replaces one base to another in the coding sequence that does not alter amino acids in the translated protein due to the degeneracy genetic code. Because of synonymous mutation does not change the protein primary structure, it has been considered nonfunctional for a long time. So it sometimes called ‘silent mutation’. But recent studies suggesting that such synonymous mutations play an important role in human phenotype by affecting transcript splicing, mRNA stability, RNA secondary structure, the biding site of transcription factor binding and microRNA, codon optimality and protein expression and so on.
+			                    	    <br><br>
+										<div class="page-header"><strong>Database Introduction</strong></div>
+																		    <hr class="" style="background-color: rgba(0,0,0,0.2)">
+			                    	    dbDSM (Database of Deleterious Synonymous Mutation) is an integrated database that collect multiple sources relate to deleterious synonymous mutations (DSMs). Here, we present the updated dbDSMv2 database, which provides detail information about DSM with phenotypes, including position information, disease, gene and functional score etc. We add the source of tmVar to dbDSMv2 which is a text mining approach for extracting a wide range of sequence variants in both protein and gene levels (e.g. substitution, deletion, etc) in biomedical literature. We intend to collect accurate information used for bio-research and make it accessible to all users freely. In the new version of the database, we also added new annotation features, including transcripts, conservation, etc and we used the voting method to integrate the scores of the six class features (sequence, functional regions annotation, splicing, conservation, translation efficiency, functional score features) for the whole genome synonymous mutations which is named dbDSMScore to further assess the deleterious of the variants.
+										<br><br>
+										<div class="page-header"><strong>Citation</strong></div>
+												<hr class="" style="background-color: rgba(0,0,0,0.2)">
+										A Comprehensive Database for Synonymous Mutations and Their Functional Annotations in the Human Genome<br/><br/>
+			                			Pengbo Wen, Peng Xiao, and Junfeng Xia*, dbDSM: a manually curated database for deleterious synonymous mutations. Bioinformatics, 2016, 32(12): 1914-1916.
+
+									</div>
+								</div>
+							</div>
+						</div>
+					    <div class="layui-col-md5">
+					      <div class="layui-collapse">
+							  <div class="layui-colla-item">
+								  <h2 class="layui-colla-title"><strong>Flowchart and Mechanism</strong></h2>
+
+								  <div class="layui-colla-content layui-show">
+
+									  <div class="layui-carousel" id="test1" lay-filter="test1">
+										  <div carousel-item="">
+
+											  <div><a href="/dbDSMv2/images/20200626dbDSM_workflow_V3.jpg" target="_blank">
+									  								    		<img src="/dbDSMv2/images/20200626dbDSM_workflow_V3.jpg" />
+									  								    	</a></div>
+											  <div><a href="/dbDSMv2/images/DSMs.jpg" target="_blank">
+									  								    		<img src="/dbDSMv2/images/DSMs.jpg" />
+									  								    	</a></div>
+										  </div>
+									  </div>
+								  </div>
+							  </div>
+							</div>
+							<div class="layui-collapse">
+								<div class="layui-colla-item">
+								    <h2 class="layui-colla-title"><strong>Other applications used in dbDSM</strong></h2>
+								    <div class="layui-colla-content layui-show" style="height: 270px">
+										<div class="wrapper">
+											<div class="tagcloud" style="margin-top: 40px; width: 100px">
+												<!-- bo大小 co颜色 -->
+												<a class='aimg' href="https://cadd.gs.washington.edu/"><img src="/dbDSMv2/images/CADD.png" height="40px" width="auto"></a>
+												<a class='aimg' href="http://bioinfo.ahu.edu.cn:8080/PrDSM/"><img src="/dbDSMv2/images/PrDSM.png" height="40px" width="auto"></a>
+												<a class='aimg' href="https://disease-ontology.org/"><img src="/dbDSMv2/images/Disease_Ontology.png" height="40px" width="auto"></a>
+												<a class='aimg' href="http://fathmm.biocompute.org.uk"><img src="/dbDSMv2/images/fathmm.png" height="40px" width="auto"></a>
+												<a class='aimg' href="https://cbcl.ics.uci.edu/public_data/DANN"><img src="/dbDSMv2/images/DANN.png" height="40px" width="auto"></a>
+												<a class='aimg' href="http://genome.ucsc.edu/cgi-bin/hgTables"><img src="/dbDSMv2/images/TransVar.png" height="40px" width="auto"></a>
+												<a class='aimg' href="http://fathmm.biocompute.org.uk/fathmm-xf/"><img src="/dbDSMv2/images/FX.png" height="40px" width="auto"></a>
+												<a class='aimg' href="http://www.ensembl.org/Tools/VEP"><img src="/dbDSMv2/images/VEP.png" height="40px" width="auto"></a>
+												<a class='aimg' href="http://trap-score.org/Search?version=v2"><img src="/dbDSMv2/images/TraP.png" height="40px" width="auto"></a>
+												<a class='aimg' href="https://snps.biofold.org/phd-snpg/index.html"><img src="/dbDSMv2/images/PhD-SNPg.png" height="40px" width="auto"></a>
+												<a class='aimg' href="ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/"><img src="/dbDSMv2/images/clinvar.png" height="40px" width="auto"></a>
+												<a class='aimg' href="http://www.ebi.ac.uk/gwas/downloads"><img src="/dbDSMv2/images/gwasca.png" height="40px" width="auto"></a>
+												<a class='aimg' href="https://s3.amazonaws.com/NHLBI_Public/GRASP/GraspFullDataset2.zip"><img src="/dbDSMv2/images/GRASP.png" height="40px" width="auto"></a>
+												<a class='aimg' href="ftp://ftp.ncbi.nlm.nih.gov/pub/lu/PubTator/"><img src="/dbDSMv2/images/tmvar.png" height="40px" width="auto"></a>
+												<a class='aimg' href="http://compbio.uthsc.edu/miRSNP/download/"><img src="/dbDSMv2/images/poly.png" height="40px" width="auto"></a>
+												<a class='aimg' href="http://jjwanglab.org/gwasdb"><img src="/dbDSMv2/images/gwasdb.png" height="40px" width="auto"></a>
+											</div>
+										</div><!--wrapper-->
+									</div>
+								</div>
+							</div>
+
+							<div class="layui-collapse">
+								<div class="layui-colla-item">
+									<h2 class="layui-colla-title"><strong>Update News</strong></h2>
+								    <div class="layui-colla-content layui-show" style="color:black;">
+<!--								    		07/06/2019: The Database of Deleterious Synonymous Mutation Version 2 (dbDSM v2) is updating.<br>-->
+											09/21/2017: Manually curated data from PubMed and Web of Knowledge updated.&nbsp;&nbsp;&nbsp;&nbsp;<a href= "{{ url_for('homeblue.about') }}#Update " style="color:#5fb878; width: 60px">More</a><br>
+										<div class="layui-card-footer" style="text-align: end;">
+									</div>
+									</div>
+								</div>
+							</div>
+
+					    </div>
+					</div>
+
+				</div>
+				
+				</div>
+				
+			</div>
+			<!--主体到这-->
+			
+			<div class="layui-container" id="footer">
+				 <hr style="background-color: #000000; margin-bottom: 0px">
+
+				
+				<div class="layui-row">
+				    <div class="layui-col-md4" align='left'>
+						<div style="display:inline-block;width:200px;"></div>
+<!--				      	<div style="display:inline-block;width:200px;"><script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=0nqmwz0cey3&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0" async="async"></script></div>-->
+				    </div>
+				    <div class="layui-col-md4"  align='center' style="margin-top:20px">
+				     	 Links:
+						<a class="ow" href="http://bioinfo.ahu.edu.cn:8080/PrDSM/" target="_blank">PrDSM</a>
+						<div style="display:inline;">|</div>
+						<a class="ow" href="http://bioinfo.ahu.edu.cn:8080/IDSV/" target="_blank">IDSV</a>
+
+						<div class="copyright">
+							Copyright©
+							<a class="ow" href="http://en.ahu.edu.cn/" target="_blank">AnHui University</a> ©All Rights Reserved.
+						</div>
+				    </div>
+				    <div class="layui-col-md4" align='right' style="margin-top:10px">
+				     	 <div>
+<!--							<script type="text/javascript" src="//rf.revolvermaps.com/0/0/0.js?i=52m8mqpvyan&amp;d=3&amp;p=0&amp;b=0&amp;w=218&amp;g=2&amp;f=arial&amp;fs=12&amp;r=0&amp;c0=362b05&amp;c1=375363&amp;c2=000000&amp;ic0=0&amp;ic1=0" async="async"></script>-->
+						</div>
+				    </div>
+				</div>
+			</div>
+
+		</div>
+	</body>
+	<script src="/dbDSMv2/layui/layui.all.js "></script>
+	
+	<script>
+		layui.use('element', function() {
+			var element = layui.element;
+		});
+	</script>
+	<script>
+		layui.use(['carousel', 'form'], function () {
+			var carousel = layui.carousel
+					, form = layui.form;
+
+			//常规轮播
+			carousel.render({
+				elem: '#test1'
+				,width: '100%'
+				,height: '300px'
+				,interval: 5000
+			});
+		});
+	</script>
+	<script type="text/javascript" src="/dbDSMv2/js/Bubble.js"></script>
+    <script type="text/javascript">
+    /*3D标签云*/
+    tagcloud({
+        selector: ".tagcloud",  //元素选择器
+        fontsize: 16,       //基本字体大小, 单位px
+        radius: 85,         //滚动半径, 单位px 页面宽度和高度的五分之一
+        mspeed: "slow",   //滚动最大速度, 取值: slow, normal(默认), fast
+        ispeed: "slow",   //滚动初速度, 取值: slow, normal(默认), fast
+        direction: 135,     //初始滚动方向, 取值角度(顺时针360): 0对应top, 90对应left, 135对应right-bottom(默认)...
+        keep: false          //鼠标移出组件后是否继续随鼠标滚动, 取值: false, true(默认) 对应 减速至初速度滚动, 随鼠标滚动
+    });
+    </script>
+</html>
