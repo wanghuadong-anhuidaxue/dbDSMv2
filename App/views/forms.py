@@ -16,12 +16,12 @@ from wtforms.validators import InputRequired,DataRequired,Length,ValidationError
 
 
 class SubmitForm(FlaskForm):
-    title = StringField(label='Title', id='Title', render_kw={'autocomplete': 'off', 'class_': 'layui-input'})
+    title = StringField(label='Title', id='Title', render_kw={'autocomplete': 'off', 'class_': 'layui-input'}, validators=[DataRequired()])
     joumal = StringField(label='Joumal', id='Joumal', render_kw={'autocomplete': 'off', 'class_': 'layui-input'})
-    gene = StringField(label='Gene', id='Gene', render_kw={'autocomplete': "off", 'class_': 'layui-input'})
+    gene = StringField(label='Gene', id='Gene', render_kw={'autocomplete': "off", 'class_': 'layui-input'}, validators=[DataRequired()])
     email = StringField(label='E-mail', id='E-mail',
                          render_kw={'autocomplete': 'off', 'class_': 'layui-input', 'lay-verify': "email"})
-    mutation = StringField(label='Mutation', id='Mutation', render_kw={'autocomplete': "off", 'class_': 'layui-input'})
+    mutation = StringField(label='Mutation', id='Mutation', render_kw={'autocomplete': "off", 'class_': 'layui-input'}, validators=[DataRequired()])
     more = TextAreaField(label='More introduction (limited to 500 words)', id='More',
                          render_kw={'maxlength': '500', 'lay-verify': 'limitLength', 'class_': 'layui-textarea',
                                     'placeholder': 'Any relevant information (like abstract, key sentences et al.) can be filled in this blank.'})
@@ -31,8 +31,20 @@ class SubmitForm(FlaskForm):
 
 class SearchForm(FlaskForm):
     searchBy = SelectMultipleField(label='searchBy', id='searchBy',render_kw={'lay-verify':"required", 'style':'width:17%;margin-left:10%;'},
-                                   choices =[('Disease','Disease'),('Gene','Gene'),('GRCh38_Position','GRCh38_Position'),('Mutation','Mutation')],
+                                   choices =[('Disease','Disease'),('Gene','Gene'),('GRCh38 Position','GRCh38 Position'),('Mutation','Mutation')],
                                    default = 'Disease')
+    userinput = StringField(label='userinput', id='userinput',
+                            render_kw={'autocomplete': 'off', 'class_': 'layui-input','lay-verify':"required", 'size':"100", 'style':"height: 35px;"})
+    submit1 = SubmitField('Submit', id='submitBtn',
+                         render_kw={'lay-submit': '', 'lay-filter': '*', 'class_': 'layui-btn',
+                                    'style': "background-color: #5FB878;",'onclick':"checkPur()"})
+    reset = SubmitField('Reset', id='resetBtn', render_kw={'class_': 'layui-btn layui-btn-primary', 'type': "reset"})
+
+
+
+class SearchAnnotationForm(FlaskForm):
+    searchBy = SelectMultipleField(label='searchBy', id='searchBy',render_kw={'lay-verify':"required", 'style':'width:17%;margin-left:10%;'},
+                                   choices =[('Gene','Gene'),('GRCh38 Position','GRCh38 Position'),('Mutation','Mutation')])
     userinput = StringField(label='userinput', id='userinput',
                             render_kw={'autocomplete': 'off', 'class_': 'layui-input','lay-verify':"required", 'size':"100", 'style':"height: 35px;"})
     submit1 = SubmitField('Submit', id='submitBtn',

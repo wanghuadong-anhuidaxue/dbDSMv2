@@ -32,7 +32,9 @@ def searchSubmit():
     per_page = request.args.get("per_page", 10, type=int)
     searchBy = request.form.get("searchBy")
     userinput = request.form.get("userinput")
-
+    # print(page,per_page,searchBy,userinput)
+    if searchBy == 'GRCh38 Position':
+        searchBy = 'GRCh38_Position'
     userinput = changeHTML(userinput)
     paginate = showTable((searchBy, userinput), page, per_page)
     return render_template('searchresult.html', searchBy=searchBy, userinput=userinput, pagination=paginate,
@@ -185,60 +187,89 @@ def researchGene():
 
 
 # 下面这是数据库载入的代码
-# @searchblue.route('/addall')
-# def addAllSql():
-#     import pandas as pd
-#     data = pd.read_csv('C:/Users/whd/PycharmProjects/dbDSMv2/DSMv2.1.1.csv', dtype=str, encoding='ISO-8859-1')
-#     for line in data.values:
-#         allDataInfo = AllData(
-#             DBDSMID=str(line[0]),
-#             Disease=str(line[1]),
-#             DOID='n/a' if str(line[2]) == 'nan' else str(line[2]),
-#             Gene='n/a' if str(line[3]) == 'nan' else str(line[3]),
-#             GeneID='n/a' if str(line[4]) == 'nan' else str(line[4]),
-#             MIM='n/a' if str(line[5]) == 'nan' else str(line[5]),
-#             Map_Location='n/a' if str(line[6]) == 'nan' else str(line[6]),
-#             VariantType='n/a' if str(line[7]) == 'nan' else str(line[7]),
-#             Protein='n/a' if str(line[8]) == 'nan' else str(line[8]),
-#             cDNA='n/a' if str(line[9]) == 'nan' else str(line[9]),
-#             SNPID='n/a' if str(line[10]) == 'nan' else str(line[10]),
-#             CodonChange='n/a' if str(line[11]) == 'nan' else str(line[11]),
-#             RefseqTranscript='n/a' if str(line[12]) == 'nan' else str(line[12]),
-#             P_Value='n/a' if str(line[13]) == 'nan' else str(line[13]),
-#             Strand='n/a' if str(line[14]) == 'nan' else str(line[14]),
-#             GRCh38_Position='n/a' if str(line[15]) == 'nan' else str(line[15]),
-#             GRCh37_Position='n/a' if str(line[16]) == 'nan' else str(line[16]),
-#             Ref='n/a' if str(line[17]) == 'nan' else str(line[17]),
-#             Alt='n/a' if str(line[18]) == 'nan' else str(line[18]),
-#             Year='n/a' if str(line[19]) == 'nan' else str(line[19]),
-#             PMID='n/a' if str(line[20]) == 'nan' else str(line[20]),
-#             Ethnicity='n/a' if str(line[21]) == 'nan' else str(line[21]),
-#             Classification='n/a' if str(line[22]) == 'nan' else str(line[22]),
-#             StrengthOfEvidence='n/a' if str(line[23]) == 'nan' else str(line[23]),
-#             KeySentence='n/a' if str(line[24]) == 'nan' else str(line[24]),
-#             PrDSM='n/a' if str(line[26]) == 'nan' else str(line[26]),
-#             TraP='n/a' if str(line[27]) == 'nan' else str(line[27]),
-#             PhD_SNPg='n/a' if str(line[28]) == 'nan' else str(line[28]),
-#             FATHMM_MKL='n/a' if str(line[29]) == 'nan' else str(line[29]),
-#             CADD='n/a' if str(line[30]) == 'nan' else str(line[30]),
-#             DANN='n/a' if str(line[31]) == 'nan' else str(line[31]),
-#             FATHMM_XF='n/a' if str(line[32]) == 'nan' else str(line[32]),
-#             priPhCons='n/a' if str(line[33]) == 'nan' else str(line[33]),
-#             mamPhCons='n/a' if str(line[34]) == 'nan' else str(line[34]),
-#             verPhCons='n/a' if str(line[35]) == 'nan' else str(line[35]),
-#             priPhyloP='n/a' if str(line[36]) == 'nan' else str(line[36]),
-#             mamPhyloP='n/a' if str(line[37]) == 'nan' else str(line[37]),
-#             verPhyloP='n/a' if str(line[38]) == 'nan' else str(line[38]),
-#             GerpS='n/a' if str(line[39]) == 'nan' else str(line[39]),
-#             TFBs='n/a' if str(line[40]) == 'nan' else str(line[40]),
-#             TE='n/a' if str(line[41]) == 'nan' else str(line[41]),
-#             dPSIZ='n/a' if str(line[42]) == 'nan' else str(line[42]),
-#             DSP='n/a' if str(line[43]) == 'nan' else str(line[43]),
-#             Source='n/a' if str(line[25]) == 'nan' else str(line[25]),
-#             Chromosome='n/a' if str(line[15]) == 'nan' else str(line[15]).split(':')[0]
-#         )
-#         db.session.add(allDataInfo)
-#         # break
-#     db.session.commit()
-#     print('ok!')
-#     return render_template("success.html")
+@searchblue.route('/dbDSMv2/addall')
+def addAllSql():
+    import pandas as pd
+    data = pd.read_csv('/data1/WWW/flask_website/dbDSMv2/DSMv2.csv', dtype=str, encoding='ISO-8859-1')
+    for line in data.values:
+        allDataInfo = AllData(
+            DBDSMID=str(line[0]),
+            Disease=str(line[1]),
+            DOID='n/a' if str(line[2]) == 'nan' else str(line[2]),
+            Gene='n/a' if str(line[3]) == 'nan' else str(line[3]),
+            GeneID='n/a' if str(line[4]) == 'nan' else str(line[4]),
+            MIM='n/a' if str(line[5]) == 'nan' else str(line[5]),
+            Map_Location='n/a' if str(line[6]) == 'nan' else str(line[6]),
+            VariantType='n/a' if str(line[7]) == 'nan' else str(line[7]),
+            Protein='n/a' if str(line[8]) == 'nan' else str(line[8]),
+            cDNA='n/a' if str(line[9]) == 'nan' else str(line[9]),
+            SNPID='n/a' if str(line[10]) == 'nan' else str(line[10]),
+            CodonChange='n/a' if str(line[11]) == 'nan' else str(line[11]),
+            RefseqTranscript='n/a' if str(line[12]) == 'nan' else str(line[12]),
+            P_Value='n/a' if str(line[13]) == 'nan' else str(line[13]),
+            Strand='n/a' if str(line[14]) == 'nan' else str(line[14]),
+            GRCh38_Position='n/a' if str(line[15]) == 'nan' else str(line[15]),
+            GRCh37_Position='n/a' if str(line[16]) == 'nan' else str(line[16]),
+            Ref='n/a' if str(line[17]) == 'nan' else str(line[17]),
+            Alt='n/a' if str(line[18]) == 'nan' else str(line[18]),
+            Year='n/a' if str(line[19]) == 'nan' else str(line[19]),
+            PMID='n/a' if str(line[20]) == 'nan' else str(line[20]),
+            Ethnicity='n/a' if str(line[21]) == 'nan' else str(line[21]),
+            Classification='n/a' if str(line[22]) == 'nan' else str(line[22]),
+            StrengthOfEvidence='n/a' if str(line[23]) == 'nan' else str(line[23]),
+            KeySentence='n/a' if str(line[24]) == 'nan' else str(line[24]),
+
+            Source='n/a' if str(line[25]) == 'nan' else str(line[25]),
+            Score='n/a' if str(line[26]) == 'nan' else str(line[26]),
+            Vote='n/a' if str(line[27]) == 'nan' else str(line[27]),
+
+            PrDSM='n/a' if str(line[28]) == 'nan' else str(line[28]),
+            TraP='n/a' if str(line[29]) == 'nan' else str(line[29]),
+            SilVA='n/a' if str(line[30]) == 'nan' else str(line[30]),
+            PhD_SNPg='n/a' if str(line[31]) == 'nan' else str(line[31]),
+            FATHMM_MKL='n/a' if str(line[32]) == 'nan' else str(line[32]),
+            CADD='n/a' if str(line[33]) == 'nan' else str(line[33]),
+            DANN='n/a' if str(line[34]) == 'nan' else str(line[34]),
+            FATHMM_XF='n/a' if str(line[35]) == 'nan' else str(line[35]),
+
+            priPhCons='n/a' if str(line[36]) == 'nan' else str(line[36]),
+            mamPhCons='n/a' if str(line[37]) == 'nan' else str(line[37]),
+            verPhCons='n/a' if str(line[38]) == 'nan' else str(line[38]),
+            priPhyloP='n/a' if str(line[39]) == 'nan' else str(line[39]),
+            mamPhyloP='n/a' if str(line[40]) == 'nan' else str(line[40]),
+            verPhyloP='n/a' if str(line[41]) == 'nan' else str(line[41]),
+            GerpS='n/a' if str(line[42]) == 'nan' else str(line[42]),
+            TFBs='n/a' if str(line[43]) == 'nan' else str(line[43]),
+            TE='n/a' if str(line[44]) == 'nan' else str(line[44]),
+            dPSIZ='n/a' if str(line[45]) == 'nan' else str(line[45]),
+            DSP='n/a' if str(line[46]) == 'nan' else str(line[46]),
+
+            RSCU='n/a' if str(line[47]) == 'nan' else str(line[47]),
+            dRSCU='n/a' if str(line[48]) == 'nan' else str(line[48]),
+            CpG_mark='n/a' if str(line[49]) == 'nan' else str(line[49]),
+            CpG_exon='n/a' if str(line[50]) == 'nan' else str(line[50]),
+            SR_minus='n/a' if str(line[51]) == 'nan' else str(line[51]),
+            SR_plus='n/a' if str(line[52]) == 'nan' else str(line[52]),
+            FAS6_minus='n/a' if str(line[53]) == 'nan' else str(line[53]),
+            FAS6_plus='n/a' if str(line[54]) == 'nan' else str(line[54]),
+            MES='n/a' if str(line[55]) == 'nan' else str(line[55]),
+            dMES='n/a' if str(line[56]) == 'nan' else str(line[56]),
+            MES_plus='n/a' if str(line[57]) == 'nan' else str(line[57]),
+            MES_minus='n/a' if str(line[58]) == 'nan' else str(line[58]),
+            MEC_MC_mark='n/a' if str(line[59]) == 'nan' else str(line[59]),
+            MEC_CS_mark='n/a' if str(line[60]) == 'nan' else str(line[60]),
+            MES_KM_mark='n/a' if str(line[61]) == 'nan' else str(line[61]),
+            PESE_minus='n/a' if str(line[62]) == 'nan' else str(line[62]),
+            PESE_plus='n/a' if str(line[63]) == 'nan' else str(line[63]),
+            PESS_minus='n/a' if str(line[64]) == 'nan' else str(line[64]),
+            PESS_plus='n/a' if str(line[65]) == 'nan' else str(line[65]),
+            f_premrna='n/a' if str(line[66]) == 'nan' else str(line[66]),
+            f_mrna='n/a' if str(line[67]) == 'nan' else str(line[67]),
+
+            Chromosome='n/a' if str(line[15]) == 'nan' else str(line[15]).split(':')[0]
+        )
+        db.session.add(allDataInfo)
+        # break
+    db.session.commit()
+    print('ok!')
+    return render_template("success.html")

@@ -33,6 +33,9 @@
         .layui-colla-content {
             margin-bottom: -10px;
         }
+        .heada-child {
+                    margin-top: -20px;
+        }
     </style>
 </head>
 
@@ -49,11 +52,12 @@
                 <li class="layui-nav-item">
                     <a name="heada" href="/dbDSMv2/">Home</a>
                 </li>
-                <li class="layui-nav-item layui-this">
-                    <a href="/dbDSMv2/search">Search</a>
-                </li>
                 <li class="layui-nav-item ">
-                    <a href="/dbDSMv2/analysis">Analysis</a>
+                    <a class="heada" href="#">Search</a>
+                    <dl class="layui-nav-child heada-child">
+                        <dd><a href="/dbDSMv2/search">Literature-based DSMs</a></dd>
+                        <dd><a href="/dbDSMv2/searchannotation">Annotation-based DSMs</a></dd>
+                    </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="/dbDSMv2/download">Download</a>
@@ -78,7 +82,17 @@
 
     <div class="layui-row" id="bodyer" align="center">
         <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12" id="simplesearch"
-             style="margin-top:50px;margin-bottom:30px;">
+             style="margin-top:50px;">
+            <fieldset class="layui-elem-field">
+                <legend style="align:left;margin-bottom:30px;"><i><strong>Literature-based DSMs</strong></i></legend>
+                <div style="margin: 0 10px 10px 40px;">
+                    <p style="text-align: left; font-size: 15px;line-height:25px;">This panel provides literature-based deleterious synonymous mutations, which consist of datasets from GRASP, ClinVar, PolymiRTS, GWAS catalog, GWASdb and manual curated datasets from Pubmed database, Web of Knowledge and tmVar. Annotation-based DSMs provide putatively functional synonymous mutations which selected by voting methods according to multisource features.</p>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12" id="simplesearch"
+             style="margin-top:20px;margin-bottom:30px;">
             <fieldset class="layui-elem-field">
                 <legend style="align:left;margin-bottom:30px;"><i><strong>Search</strong></i></legend>
                 <form class="layui-form layui-field-box" id="search" action="/dbDSMv2/searchSubmit" method="post">
@@ -96,11 +110,11 @@
                     {{ form.csrf_token }}
                     <input type="text" name="search" class="layui-input layui-hide" value="1">
                     <div class="layui-text">
-                        <p style="margin: 5px 0 5px -120px;">
-                            eg. :
+                        <p style="margin: 5px 0px 5px -50px;">
+                            e.g.
                             <a onclick="exampleFun(this,'Disease')" style="cursor: pointer;color: #5fb878;">Early-Onset Epilepsy</a>;
                             <a onclick="exampleFun(this,'Gene')" style="cursor: pointer;color: #5fb878;">PCDH19</a>;
-                            <a onclick="exampleFun(this,'GRCh38_Position')" style="cursor: pointer;color: #5fb878;">X:100342042</a>;
+                            <a onclick="exampleFun(this,'GRCh38 Position')" style="cursor: pointer;color: #5fb878;">X:100342042</a>;
                             <a onclick="exampleFun(this,'Mutation')" style="cursor: pointer;color: #5fb878;">c.954G>C</a>;
                             <a onclick="exampleFun(this,'Mutation')" style="cursor: pointer;color: #5fb878;">p.Thr318=</a>
                         </p>

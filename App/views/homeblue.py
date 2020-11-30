@@ -49,11 +49,12 @@ def literature():
     literatureName = literatureName.replace('_',' ')
     # print('#####', literatureName)
     data = np.load(Path(current_app.config['LITERATURE_PATH']).joinpath("literature.npy"))
+    # print(data[0:5])
     if literatureName == "ALL":
         literatureList = data
     else :
-        literatureList = data[np.where(data[:, 4:] == literatureName)[0]]
-    return render_template('literature.html', literatureList=literatureList, literatureName=literatureName.replace(' ','_'))
+        literatureList = data[np.where(data[:, 5:] == literatureName)[0]]
+    return render_template('literature.html', literatureList=literatureList, literatureName=literatureName.replace(' ','_'), literatureNum=len(data))
 
 
 

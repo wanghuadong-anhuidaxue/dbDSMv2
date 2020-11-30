@@ -62,7 +62,13 @@
 			.abutton:hover {
 				border-color: #5fb878;
 			}
-
+            .heada-child {
+                    margin-top: -20px;
+            }
+            dd{
+                height: 32px;
+                margin-top: 5px;
+            }
 		</style>
 	</head>
 
@@ -80,12 +86,13 @@
 						<li class="layui-nav-item">
 							<a href="/dbDSMv2/">Home</a>
 						</li>
-						<li class="layui-nav-item layui-this">
-							<a href="/dbDSMv2/search">Search</a>
-						</li>
 						<li class="layui-nav-item ">
-							<a href="/dbDSMv2/analysis">Analysis</a>
-						</li>
+							<a class="heada" href="#">Search</a>
+                            <dl class="layui-nav-child heada-child">
+                                <dd><a href="/dbDSMv2/search">Literature-based DSMs</a></dd>
+                                <dd><a href="/dbDSMv2/searchannotation">Annotation-based DSMs</a></dd>
+                            </dl>
+                        </li>
 						<li class="layui-nav-item">
 							<a href="/dbDSMv2/download">Download</a>
 						</li>
@@ -108,7 +115,7 @@
 			<!--头到这-->
 			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 40px; margin-bottom: 0px">
 				<legend><i><b>Search Result:</b></i>&nbsp;
-					<strong>{{ searchBy }} like:</strong> {{ userinput }}
+					<strong>{{ searchBy.replace('_',' ') }} like:</strong> {{ userinput }}
 				</legend>
 			</fieldset>
 
@@ -153,7 +160,7 @@
 						<th>Disease</th>
 						<th>Gene</th>
 						<th>SNPID</th>
-						<th>GRCh38_Position</th>
+						<th>GRCh38 Position</th>
 						<th>c.DNA</th>
 						<th>Protein</th>
 						<th>dbDSMAccNum</th>
@@ -172,7 +179,6 @@
             	{% endfor %}
 			</table>
 			<div class="" style="margin-top: 10px">
-<!--				<button class="btn btn-default"><a style="float: left" href="downTable?userinput={{ userinput }}&searchBy={{ searchBy }}">download table data</a></button>-->
 				<button class="btn btn-default abutton"><a style="float: left" href="downAllTable?userinput={{ userinput }}&searchBy={{ searchBy }}">download full results</a></button>
 				<ul class="pagination">
 					{% if pagination.has_prev %}

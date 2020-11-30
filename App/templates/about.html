@@ -52,6 +52,9 @@
         .asvg:hover {
             color: #5fb878;
         }
+        .heada-child {
+                    margin-top: -20px;
+                }
     </style>
 </head>
 
@@ -68,11 +71,12 @@
                 <li class="layui-nav-item">
                     <a href="/dbDSMv2/">Home</a>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="/dbDSMv2/search">Search</a>
-                </li>
                 <li class="layui-nav-item ">
-                    <a href="/dbDSMv2/analysis">Analysis</a>
+                    <a class="heada" href="#">Search</a>
+                    <dl class="layui-nav-child heada-child">
+                        <dd><a href="/dbDSMv2/search">Literature-based DSMs</a></dd>
+                        <dd><a href="/dbDSMv2/searchannotation">Annotation-based DSMs</a></dd>
+                    </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="/dbDSMv2/download">Download</a>

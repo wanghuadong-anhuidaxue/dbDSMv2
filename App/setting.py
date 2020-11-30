@@ -36,7 +36,7 @@ class DevelopConfig(Config):
         "PASSWORD": "123456",
         "HOST": "localhost",
         "POST": "3306",
-        "NAME": "dbdsmv2.1"
+        "NAME": "dbdsmv2.2"
     }
     SQLALCHEMY_DATABASE_URI = get_db_uri(dbinfo)
 
@@ -50,7 +50,7 @@ class TestConfig(Config):
         "PASSWORD": "123456",
         "HOST": "localhost",
         "POST": "3306",
-        "NAME": "dbdsmv2.1"
+        "NAME": "dbdsmv2.2"
     }
     SQLALCHEMY_DATABASE_URI = get_db_uri(dbinfo)
 
@@ -63,7 +63,7 @@ class StagingConfig(Config):
         "PASSWORD": "123456",
         "HOST": "localhost",
         "POST": "3306",
-        "NAME": "dbdsmv2.1"
+        "NAME": "dbdsmv2.2"
     }
     SQLALCHEMY_DATABASE_URI = get_db_uri(dbinfo)
 
@@ -74,7 +74,7 @@ class ProductConfig(Config):
         "DRIVER": "mysqlconnector",
         "USER": "root",
         "PASSWORD": "123456",
-        "NAME": "dbdsmv2.1",
+        "NAME": "dbdsmv2.2",
         "HOST": "localhost",
         "POST": "3306"
     }

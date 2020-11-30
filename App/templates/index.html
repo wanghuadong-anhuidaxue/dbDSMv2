@@ -21,7 +21,9 @@
             height: 50px;
             box-shadow: 5px 5px 5px #888888;
         }
-
+        .heada-child {
+                    margin-top: -20px;
+                }
 		</style>
 	</head>
 
@@ -39,11 +41,12 @@
 							<a class="heada" href="/dbDSMv2/">Home</a>
 						</li>
 						<li class="layui-nav-item ">
-							<a class="heada" href="/dbDSMv2/search">Search</a>
-						</li>
-						<li class="layui-nav-item ">
-							<a href="/dbDSMv2/analysis">Analysis</a>
-						</li>
+							<a class="heada" href="#">Search</a>
+                            <dl class="layui-nav-child heada-child">
+                                <dd><a href="/dbDSMv2/search">Literature-based DSMs</a></dd>
+                                <dd><a href="/dbDSMv2/searchannotation">Annotation-based DSMs</a></dd>
+                            </dl>
+                        </li>
 						<li class="layui-nav-item">
 							<a class="heada" href="/dbDSMv2/download">Download</a>
 						</li>
@@ -102,8 +105,8 @@
 									  <div class="layui-carousel" id="test1" lay-filter="test1">
 										  <div carousel-item="">
 
-											  <div><a href="/dbDSMv2/images/20200626dbDSM_workflow_V3.jpg" target="_blank">
-									  								    		<img src="/dbDSMv2/images/20200626dbDSM_workflow_V3.jpg" />
+											  <div><a href="/dbDSMv2/images/20201120-dbDSM-Flowchart-v1-2.jpg" target="_blank">
+									  								    		<img src="/dbDSMv2/images/20201120-dbDSM-Flowchart-v1-2.jpg" />
 									  								    	</a></div>
 											  <div><a href="/dbDSMv2/images/DSMs.jpg" target="_blank">
 									  								    		<img src="/dbDSMv2/images/DSMs.jpg" />

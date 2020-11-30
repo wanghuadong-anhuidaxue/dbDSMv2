@@ -17,6 +17,9 @@
         .asvg:hover {
             color: #5fb878;
         }
+        .heada-child {
+                    margin-top: -20px;
+                }
     </style>
 
 </head>
@@ -34,11 +37,12 @@
                 <li class="layui-nav-item">
                     <a href="/dbDSMv2/">Home</a>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="/dbDSMv2/search">Search</a>
-                </li>
                 <li class="layui-nav-item ">
-                    <a href="/dbDSMv2/analysis">Analysis</a>
+                    <a class="heada" href="#">Search</a>
+                    <dl class="layui-nav-child heada-child">
+                        <dd><a href="/dbDSMv2/search">Literature-based DSMs</a></dd>
+                        <dd><a href="/dbDSMv2/searchannotation">Annotation-based DSMs</a></dd>
+                    </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="/dbDSMv2/download">Download</a>
@@ -114,6 +118,7 @@
                             <th style="text-align: center"><strong>Title</strong></th>
                             <th style="text-align: center"><strong>Author</strong></th>
                             <th style="text-align: center"><strong>Source</strong></th>
+                            <th style="text-align: center"><strong>Year</strong></th>
                             <th style="text-align: center"><strong>LiteratureClassification</strong></th>
                         </tr>
                         </thead>
@@ -133,6 +138,7 @@
                             <td>{{ literature[2] }}</td>
                             <td>{{ literature[3] }}</td>
                             <td>{{ literature[4] }}</td>
+                            <td>{{ literature[5] }}</td>
                         </tr>
                         {% endfor %}
                         </tbody>
@@ -220,31 +226,31 @@ var app = {};
 option = null;
 var data = [{
     name: 'mRNA structure',
-    value: 32/740
+    value: 32/{{ literatureNum }}
 }, {
     name: 'microRNA binding',
-    value: 1/740
+    value: 1/{{ literatureNum }}
 }, {
     name: 'Protein synthesis',
-    value: 42/740
+    value: 42/{{ literatureNum }}
 }, {
     name: 'Splicing regulation',
-    value: 603/740
+    value: 603/{{ literatureNum }}
 }, {
     name: 'Transcription factor regulation',
-    value: 1/740
+    value: 1/{{ literatureNum }}
 }, {
     name: 'Specific tool',
-    value: 6/740
+    value: 7/{{ literatureNum }}
 }, {
     name: 'General tool',
-    value: 10/740
+    value: 10/{{ literatureNum }}
 }, {
     name: 'Analysis article',
-    value: 22/740
+    value: 22/{{ literatureNum }}
 }, {
     name: 'Review article',
-    value: 23/740
+    value: 23/{{ literatureNum }}
 }];
 
 option = {

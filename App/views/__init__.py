@@ -4,6 +4,7 @@ from .submitblue import submitblue
 from .searchblue import searchblue
 from .analysisblue import analysisblue
 from .downblue import downblue
+from .searchAnnotationblue import searchAnnotationblue
 # from .testblue import testblue
 
 
@@ -14,4 +15,5 @@ def init_view(app):
     app.register_blueprint(searchblue)
     app.register_blueprint(analysisblue)
     app.register_blueprint(downblue)
+    app.register_blueprint(searchAnnotationblue)
     # app.register_blueprint(testblue)

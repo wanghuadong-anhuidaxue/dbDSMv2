@@ -60,6 +60,13 @@
 			.abutton:hover {
 				border-color: #5fb878;
 			}
+            .heada-child {
+                    margin-top: -20px;
+            }
+            dd{
+                height: 32px;
+                margin-top: 5px;
+            }
 		</style>
 
 		
@@ -78,12 +85,13 @@
 						<li class="layui-nav-item">
 							<a href="/dbDSMv2/">Home</a>
 						</li>
-						<li class="layui-nav-item layui-this">
-							<a href="/dbDSMv2/search">Search</a>
-						</li>
 						<li class="layui-nav-item ">
-							<a href="/dbDSMv2/analysis">Analysis</a>
-						</li>
+							<a class="heada" href="#">Search</a>
+                            <dl class="layui-nav-child heada-child">
+                                <dd><a href="/dbDSMv2/search">Literature-based DSMs</a></dd>
+                                <dd><a href="/dbDSMv2/searchannotation">Annotation-based DSMs</a></dd>
+                            </dl>
+                        </li>
 						<li class="layui-nav-item">
 							<a href="/dbDSMv2/download">Download</a>
 						</li>
@@ -166,7 +174,7 @@
 						<th>Disease</th>
 						<th>Gene</th>
 						<th>SNPID</th>
-						<th>GRCh38_Position</th>
+						<th>GRCh38 Position</th>
 						<th>c.DNA</th>
 						<th>Protein</th>
 						<th>dbDSMAccNum</th>
